@@ -1,8 +1,8 @@
 ---
-title: "올리브영 입점 계약 완료"
+title: 올리브영 입점 계약 완료 .
 date: 2026-02-03
-tag: "공지"
-thumb: "/assets/images/press-thumb-4.jpg"
+tag: 공지
+thumb: /assets/images/press-thumb-4.jpg
 sourceUrl: ""
 ---
 
