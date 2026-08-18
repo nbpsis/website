@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+<link rel="shortcut icon" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/favicon.png">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="NBPSIS 공지사항 및 보도자료. 올리브영 1위 달성, 동화면세점 입점, 시나모롤 협업 에디션 런칭 등 최신 소식.">
+<meta name="keywords" content="NBPSIS보도자료,공지사항,올리브영,동화면세점,시나모롤">
+<meta name="author" content="NBPSIS">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MEDIA — NBPSIS">
+<meta property="og:description" content="NBPSIS 공지사항 및 보도자료. 올리브영 1위 달성, 동화면세점 입점, 시나모롤 협업 에디션 런칭 등 최신 소식.">
+<meta property="og:image" content="https://nbpsis.com/assets/images/specialedition.jpg">
+<meta property="og:url" content="https://nbpsis.com/media.html">
+<meta property="og:site_name" content="NBPSIS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MEDIA — NBPSIS">
+<meta name="twitter:description" content="NBPSIS 공지사항 및 보도자료. 올리브영 1위 달성, 동화면세점 입점, 시나모롤 협업 에디션 런칭 등 최신 소식.">
+<meta name="naver-site-verification" content="nbpsis-naver-seo">
+<link rel="canonical" href="https://nbpsis.com/media.html">
+<title>MEDIA — NBPSIS</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logo/nbpsis-logo.svg" alt="NBPSIS" style="opacity:1;"></a>
+    <ul class="nav-menu">
+      <li><a href="brand.html">BRAND</a></li>
+      <li><a href="product.html">PRODUCT</a></li>
+      <li><a href="media.html" class="active">MEDIA</a></li>
+      <li><a href="partners.html">PARTNERS</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://nbpsis.co.kr" target="_blank" class="btn btn-primary btn-sm mobile-show">쇼핑하기 <span class="arr">→</span></a>
+      <button class="nav-burger" aria-label="메뉴"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="brand.html">BRAND</a><a href="product.html">PRODUCT</a><a href="media.html">MEDIA</a><a href="partners.html">PARTNERS</a><a href="contact.html">CONTACT</a>
+    <a href="https://nbpsis.co.kr" target="_blank" class="btn btn-primary">쇼핑하기 <span class="arr">→</span></a>
+  </div>
+
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow-label">Our Stories</span>
+    <h1>Press &amp; Media</h1>
+    <p>언론이 주목한 NBPSIS의 새로운 소식을 만나보세요</p>
+  </div>
+</section>
+
+<div class="media-tabs-bar">
+  <button class="media-tab active" data-tab="press">공지 및 보도자료</button>
+  <button class="media-tab" data-tab="video">광고 영상</button>
+</div>
+
+<!-- 공지 및 보도자료 — CMS로 동적 렌더링 -->
+<div class="media-panel active" id="panel-press">
+  <section class="press-section-inner">
+    <div class="container">
+      <div class="press-grid" id="pressGrid">
+        <!-- JS로 자동 렌더링 -->
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 광고 영상 -->
+<div class="media-panel" id="panel-video">
+    <section style="background:#fff;">
+      <div class="container">
+        <div class="video-grid" id="videoGrid">
+          <!-- JS로 자동 렌더링 -->
+        </div>
+      </div>
+    </section>
+</div>
+
+<!-- 하단 문의 -->
+<section class="media-contact">
+  <div class="container">
+    <div class="media-contact-box">
+      <p class="eyebrow">Contact</p>
+      <h3>비즈니스 제휴 및 문의</h3>
+      <p>유통 입점 브랜드 협업 미디어 제휴 등 NBPSIS와의 새로운 비즈니스 파트너십을 환영합니다</p>
+      <a href="mailto:option19@naver.com?subject=NBPSIS 비즈니스 문의" class="email-mailto-btn">
+        <span>✉ option19@naver.com</span>
+        <span style="font-size:11px;color:var(--red);font-weight:700;">메일 보내기</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 기사 팝업 모달 -->
+<div class="article-overlay" id="articleOverlay">
+  <div class="article-modal">
+    <div class="article-modal-head">
+      <div>
+        <p class="modal-date" id="articleDate"></p>
+        <h3 id="articleTitle"></h3>
+      </div>
+      <span class="modal-close" onclick="closeArticle()">×</span>
+    </div>
+    <div class="article-modal-body" id="articleBody"></div>
+  </div>
+</div>
+
+<!-- 관리자 버튼 (우하단 고정) — Decap CMS로 이동 -->
+<button class="admin-btn" onclick="openAdmin()">관리자 ✎</button>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="assets/logo/nbpsis-logo.svg" alt="NBPSIS" style="opacity:1;"></div><p class="footer-desc">(주)엔비피시스 · 사업자등록번호 163-88-03330</p><p class="footer-desc">이메일 : <a href="mailto:option19@naver.com" style="color:inherit;">option19@naver.com</a></p></div>
+      
+      <div><h4>Office Hours</h4><ul><li>Mon - Fri 09:00–18:00</li><li>Sat - Sun Closed</li></ul></div>
+      <div><h4>Policy</h4><ul>
+        <li><a href="#" onclick="openPolicy('privacy');return false;">개인정보처리방침</a></li>
+        <li><a href="#" onclick="openPolicy('terms');return false;">이용약관</a></li>
+        <li><a href="#" onclick="openPolicy('email');return false;">이메일무단수집거부</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NBPSIS. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="https://nbpsis.co.kr" target="_blank">공식 쇼핑몰 →</a>
+        <a href="https://www.instagram.com/nbpsis_official/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@NBPSIS_Cosmetic/" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/media-cms.js"></script>
+<script>
+  // Netlify Identity — 로그인 후 /admin/ 으로 리다이렉트
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', function(user) {
+      if (!user) {
+        window.netlifyIdentity.on('login', function() {
+          document.location.href = '/admin/';
+        });
+      }
+    });
+  }
+</script>
+<!-- Policy Modal -->
+<div class="policy-overlay" id="policyOverlay">
+  <div class="policy-modal">
+    <div class="policy-modal-head">
+      <h3 id="policyTitle"></h3>
+      <span class="policy-modal-close" onclick="closePolicy()">×</span>
+    </div>
+    <div class="policy-modal-body" id="policyBody"></div>
+  </div>
+</div>
+<script src="assets/js/policy.js"></script>
+</body>
+</html>

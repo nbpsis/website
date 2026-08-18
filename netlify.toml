@@ -1,0 +1,42 @@
+[build]
+  command = "npm install && npm run build"
+  publish = "."
+
+# config.yml must be served as-is (must come BEFORE the catch-all below)
+[[redirects]]
+  from = "/admin/config.yml"
+  to = "/admin/config.yml"
+  status = 200
+  force = false
+
+# Admin SPA routing
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Security headers (SAMEORIGIN so Netlify Identity iframe works)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Admin panel — no cache so CMS updates apply immediately
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# No cache for data — always serve latest articles
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

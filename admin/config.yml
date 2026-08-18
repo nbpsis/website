@@ -1,0 +1,155 @@
+# ═══════════════════════════════════════════════════════════════
+# NBPSIS Decap CMS 설정 파일
+# 관리자 페이지 (/admin/) 에서 보도자료·영상 관리
+# ═══════════════════════════════════════════════════════════════
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "🆕 새 {{collection}} 등록: {{slug}}"
+    update: "✏️ {{collection}} 수정: {{slug}}"
+    delete: "🗑️ {{collection}} 삭제: {{slug}}"
+    uploadMedia: "🖼 이미지 업로드: {{path}}"
+    deleteMedia: "🗑 이미지 삭제: {{path}}"
+
+# 한국어 로케일
+locale: "ko"
+
+# 이미지 저장 위치
+media_folder: "assets/images/press"
+public_folder: "/assets/images/press"
+
+# 로그아웃 후 홈페이지로 리다이렉트
+site_url: "/"
+display_url: "/"
+
+# 미디어 라이브러리 사용
+show_preview_links: true
+
+collections:
+
+  # ───────────────────────────────────────────
+  # 📰 보도자료
+  # ───────────────────────────────────────────
+  - name: "press"
+    label: "📰 보도자료 · 공지"
+    label_singular: "보도자료"
+    description: "공지사항과 보도자료를 관리합니다. 등록 후 자동으로 사이트에 반영됩니다."
+    folder: "content/press"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "[{{tag}}] {{title}} — {{year}}.{{month}}.{{day}}"
+    sortable_fields: ["date", "title", "tag"]
+    view_filters:
+      - label: "공지만 보기"
+        field: tag
+        pattern: "공지"
+      - label: "보도만 보기"
+        field: tag
+        pattern: "보도"
+      - label: "이벤트만 보기"
+        field: tag
+        pattern: "이벤트"
+    view_groups:
+      - label: "분류별"
+        field: tag
+      - label: "연도별"
+        field: date
+        pattern: '\d{4}'
+    fields:
+      - label: "제목"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "⚠️ 필수 · 예: 올리브영 메이크업 카테고리 실시간 1위 달성"
+
+      - label: "날짜"
+        name: "date"
+        widget: "datetime"
+        required: true
+        format: "YYYY-MM-DD"
+        date_format: "YYYY.MM.DD"
+        time_format: false
+        default: ""
+        hint: "⚠️ 필수 · 발행 날짜 (오늘 날짜로 두시면 됩니다)"
+
+      - label: "분류"
+        name: "tag"
+        widget: "select"
+        required: true
+        options:
+          - { label: "📢 공지", value: "공지" }
+          - { label: "📰 보도", value: "보도" }
+          - { label: "🎉 이벤트", value: "이벤트" }
+        default: "공지"
+        hint: "⚠️ 필수 · 자체 공지사항은 '공지', 언론 보도는 '보도', 이벤트는 '이벤트'"
+
+      - label: "썸네일 이미지"
+        name: "thumb"
+        widget: "image"
+        required: false
+        media_library:
+          config:
+            multiple: false
+        hint: "선택사항 · 목록에 표시될 대표 이미지 (권장: 가로 800px 이상 · JPG 또는 PNG)"
+
+      - label: "기사 원문 링크"
+        name: "sourceUrl"
+        widget: "string"
+        required: false
+        pattern: ["^(https?://.+)?$", "http:// 또는 https:// 로 시작하는 URL을 입력해주세요"]
+        hint: "선택사항 · 보도자료의 경우 원문 기사 URL (예: https://www.metroseoul.co.kr/article/...)"
+
+      - label: "본문 내용"
+        name: "body"
+        widget: "markdown"
+        required: true
+        hint: "⚠️ 필수 · 툴바로 굵게 · 기울임 · 링크 · 이미지 등을 추가할 수 있습니다. 이미지는 툴바의 이미지 아이콘으로 업로드하세요."
+        buttons:
+          - "bold"
+          - "italic"
+          - "link"
+          - "heading-three"
+          - "heading-four"
+          - "bulleted-list"
+          - "numbered-list"
+          - "quote"
+        editor_components:
+          - "image"
+
+  # ───────────────────────────────────────────
+  # 🎬 광고 영상
+  # ───────────────────────────────────────────
+  - name: "videos"
+    label: "🎬 광고 영상"
+    label_singular: "영상"
+    description: "유튜브 광고 영상을 관리합니다."
+    folder: "content/videos"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{title}} (순서: {{order}})"
+    sortable_fields: ["order", "title"]
+    fields:
+      - label: "영상 제목"
+        name: "title"
+        widget: "string"
+        required: true
+        hint: "⚠️ 필수 · 예: NBPSIS Brand Film 2026"
+
+      - label: "YouTube 링크 또는 영상 ID"
+        name: "url"
+        widget: "string"
+        required: true
+        hint: "⚠️ 필수 · 유튜브 전체 URL (예: https://youtu.be/hY6UM-p3e6o) 또는 영상 ID만 (예: hY6UM-p3e6o)"
+
+      - label: "표시 순서"
+        name: "order"
+        widget: "number"
+        required: false
+        default: 99
+        min: 1
+        max: 99
+        hint: "숫자가 작을수록 먼저 표시됩니다 (1 = 맨 앞)"

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NBPSIS 관리자 · 보도자료 관리</title>
+  <link rel="icon" href="/assets/images/favicon.png">
+  <style>
+    body { 
+      font-family: -apple-system, 'Pretendard', BlinkMacSystemFont, sans-serif; 
+      margin: 0;
+    }
+    /* Decap CMS 로딩 중 표시 */
+    .cms-loading {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      z-index: 9999;
+      font-family: -apple-system, sans-serif;
+    }
+    .cms-loading.hidden { display: none; }
+    .cms-loading h2 {
+      color: #E60023;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .cms-loading p {
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cms-loading" id="cmsLoading">
+    <h2>NBPSIS 관리자</h2>
+    <p>관리자 페이지를 불러오는 중입니다...</p>
+  </div>
+
+  <!-- Netlify Identity Widget (로그인 처리) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // CMS 로드되면 로딩 화면 숨김
+    if (window.CMS) {
+      window.CMS.registerEventListener({
+        name: 'preSave',
+        handler: function() { /* placeholder */ }
+      });
+    }
+    
+    // 3초 후 로딩 스피너 제거 (CMS가 자체 UI 렌더링)
+    setTimeout(function() {
+      var loading = document.getElementById('cmsLoading');
+      if (loading) loading.classList.add('hidden');
+    }, 2000);
+
+    // 로그인 이벤트 처리
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function(user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function() {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
